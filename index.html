@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="index.css" />
+  <title>Personal Dashboard</title>
+</head>
+<body>
+  <main>
+    <div class="top">
+      <div id="crypto">
+        <div id="crypto-top"></div>
+      </div>
+      <div id="weather"></div>
+    </div>
+
+    <h1 id="time" class="time"></h1>
+    <p id="author"></p>
+
+    <div id="cat-widget" role="region" aria-label="Random cat image widget">
+      <img
+        id="cat-image"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+        alt="Random cute cat"
+        aria-live="polite"
+      />
+      <button
+        id="new-cat-btn"
+        type="button"
+        aria-live="polite"
+        aria-label="Load another random cat image"
+      >
+        New cat
+      </button>
+    </div>
+  </main>
+
+  <script src="index.js" type="module"></script>
+</body>
+</html>
