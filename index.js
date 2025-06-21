@@ -1,8 +1,14 @@
-
+// Variáveis de configuração e elementos DOM
 const accessKey = process.env.PHOTO_ACCESS_KEY;
+const katApi = process.env.KAT_API;
+const weatherApiKey = process.env.WEATHER_ACCESS_KEY;
 
 const apiUrl = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${accessKey}`;
 
+const catImage = document.getElementById('cat-image');
+const btn = document.getElementById('new-cat-btn');
+
+// Funções
 async function handleImage() {
   try {
     const res = await fetch(apiUrl);
@@ -22,10 +28,10 @@ async function handleImage() {
 async function handleBitcoin() {
   try {
     const res = await fetch("https://api.coingecko.com/api/v3/coins/bitcoin");
-    if (!res.ok) {
-      throw new Error("Something went wrong");
-    }
+    if (!res.ok) throw new Error("Something went wrong");
+
     const data = await res.json();
+
     document.getElementById("crypto-top").innerHTML = `
       <img src=${data.image.small} />
       <span>${data.name}</span>
@@ -45,22 +51,14 @@ function getCurrentTime() {
   document.getElementById("time").textContent = date.toLocaleTimeString("en-us", { timeStyle: "short" });
 }
 
-setInterval(getCurrentTime, 1000);
-
-navigator.geolocation.getCurrentPosition(async (position) => {
+async function fetchWeather(lat, lon) {
   try {
-    const apiKey = process.env.WEATHER_ACCESS_KEY; 
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherApiKey}`);
+    if (!res.ok) throw new Error("Weather data not available");
 
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
-    if (!res.ok) {
-      throw new Error("Weather data not available");
-    }
     const data = await res.json();
-
     const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
     document.getElementById("weather").innerHTML = `
       <img src="${iconUrl}" alt="Weather icon" />
       <p class="weather-temp">${Math.round(data.main.temp)}º</p>
@@ -69,13 +67,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
   } catch (err) {
     console.error(err);
   }
-});
-
-handleImage();
-handleBitcoin();
-
-const catImage = document.getElementById('cat-image');
-const btn = document.getElementById('new-cat-btn');
+}
 
 async function fetchCat() {
   try {
@@ -84,9 +76,8 @@ async function fetchCat() {
 
     const res = await fetch('https://api.thecatapi.com/v1/images/search');
     const data = await res.json();
-    const imageUrl = data[0].url;
 
-    catImage.src = imageUrl;
+    catImage.src = data[0].url;
     btn.textContent = 'Get Cat';
     btn.disabled = false;
   } catch (error) {
@@ -99,7 +90,16 @@ async function fetchCat() {
   }
 }
 
+// Eventos
 btn.addEventListener('click', fetchCat);
 
-// Load the first cat image when the page loads
+navigator.geolocation.getCurrentPosition(position => {
+  fetchWeather(position.coords.latitude, position.coords.longitude);
+});
+
+// Inicializações
+setInterval(getCurrentTime, 1000);
+
+handleImage();
+handleBitcoin();
 fetchCat();
