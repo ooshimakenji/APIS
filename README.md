@@ -6,6 +6,13 @@ npm start
 ```
 
 Head over to https://vitejs.dev/ to learn more about configuring vite
+
+## Environment Variables
+API requests for the background image and weather data are now proxied through Netlify Functions. Set the following variables in your Netlify project settings (or a local `.env` file) so these functions can access the API keys:
+
+- `PHOTO_ACCESS_KEY`
+- `WEATHER_ACCESS_KEY`
+
 ## About Scrimba
 
 At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
