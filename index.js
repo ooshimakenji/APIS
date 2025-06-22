@@ -1,7 +1,5 @@
 
-const accessKey = process.env.PHOTO_ACCESS_KEY;
-
-const apiUrl = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${accessKey}`;
+const apiUrl = '/.netlify/functions/photo';
 
 async function handleImage() {
   try {
@@ -49,12 +47,10 @@ setInterval(getCurrentTime, 1000);
 
 navigator.geolocation.getCurrentPosition(async (position) => {
   try {
-    const apiKey = process.env.WEATHER_ACCESS_KEY; 
-
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
+    const res = await fetch(`/.netlify/functions/weather?lat=${lat}&lon=${lon}`);
     if (!res.ok) {
       throw new Error("Weather data not available");
     }
