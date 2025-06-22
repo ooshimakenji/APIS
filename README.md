@@ -13,6 +13,8 @@ API requests for the background image and weather data are now proxied through N
 - `PHOTO_ACCESS_KEY`
 - `WEATHER_ACCESS_KEY`
 
+The weather endpoint is configured to return temperatures in **Celsius**.
+
 ## About Scrimba
 
 At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
