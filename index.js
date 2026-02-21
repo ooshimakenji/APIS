@@ -25,7 +25,7 @@ async function handleBitcoin() {
     }
     const data = await res.json();
     document.getElementById("crypto-top").innerHTML = `
-      <img src=${data.image.small} />
+      <img src="${data.image.small}" />
       <span>${data.name}</span>
     `;
     document.getElementById("crypto").innerHTML += `
@@ -56,7 +56,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     }
     const data = await res.json();
 
-    const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     document.getElementById("weather").innerHTML = `
       <img src="${iconUrl}" alt="Weather icon" />
       <p class="weather-temp">${Math.round(data.main.temp)}º</p>
