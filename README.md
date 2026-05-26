@@ -2,7 +2,7 @@
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black) ![Netlify](https://img.shields.io/badge/Netlify-Functions-00C7B7?logo=netlify&logoColor=white) ![PWA](https://img.shields.io/badge/PWA-instalável-5A0FC8) ![Licença](https://img.shields.io/badge/licença-MIT-green)
 
-Dashboard pessoal estilo "new tab" com informações em tempo real: clima, cotação de criptomoedas, foto do dia e gatos aleatórios.
+Dashboard pessoal no estilo de nova aba com informações atualizadas em tempo real: previsão do tempo, cotação de criptomoedas, foto do dia e gatos aleatórios.
 
 ## Funcionalidades
 
@@ -10,7 +10,7 @@ Dashboard pessoal estilo "new tab" com informações em tempo real: clima, cota�
 - Cotação do Bitcoin via CoinGecko API
 - Clima local via Netlify Functions (proxy OpenWeather)
 - Foto de fundo do Unsplash
-- Widget de gatos aleatórios
+- Galeria de gatos aleatórios
 - PWA instalável (manifest.json)
 
 ## Stack
